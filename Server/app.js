@@ -4,8 +4,10 @@ const graphQL = require("express-graphql");
 const helmet = require("helmet");
 const schema = require("./schema");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(helmet());
 
 mongoose.connect(
