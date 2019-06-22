@@ -41,7 +41,6 @@ class AddBook extends Component {
     });
   };
   render() {
-    console.log(this.props);
     return (
       <form onSubmit={this.submitHandler}>
         <div className="field">

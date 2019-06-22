@@ -1,3 +1,4 @@
+require("dotenv").config;
 const PORT = 4000 || process.env.PORT;
 const express = require("express");
 const graphQL = require("express-graphql");
@@ -10,13 +11,10 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 
-mongoose.connect(
-  "mongodb+srv://user1:testpass123@cluster0-scpsr.mongodb.net/test?retryWrites=true&w=majority",
-  { useNewUrlParser: true },
-  () => {
-    console.log("Connected to the Database");
-  }
-);
+const url = `${process.env.URL}`;
+mongoose.connect(url, { useNewUrlParser: true }, () => {
+  console.log("Connected to the Database");
+});
 
 app.use(
   "/graphql",
