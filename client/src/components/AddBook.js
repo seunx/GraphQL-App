@@ -66,12 +66,11 @@ class AddBook extends Component {
         <div className="field">
           <label>Author:</label>
           <select onChange={this.changeHandler} name="author_id">
+            <option>Select Author</option>
             {this.displayAuthors()}
           </select>
         </div>
-        <div className="field">
-          <button type="submit">Submit</button>
-        </div>
+        <button type="submit">+</button>
       </form>
     );
   }

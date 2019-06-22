@@ -3,13 +3,37 @@ import { graphql } from "react-apollo";
 import { getBookQuery } from "../queries";
 
 class BookDetails extends Component {
+  displayBookDetails() {
+    const { book } = this.props.data;
+    if (book) {
+      return (
+        <div>
+          <h2>{book.name}</h2>
+          <p>Genre: {book.genre}</p>
+          <p>Author: {book.author.name}</p>
+          <p>All books by this author</p>
+          <ul>
+            {book.author.books.map(book => {
+              return <li key={book.id}>{book.name}</li>;
+            })}
+          </ul>
+        </div>
+      );
+    } else {
+      return <div>No books selected...</div>;
+    }
+  }
   render() {
-    return (
-      <div id="book-details">
-        <p>Output Details Here</p>
-      </div>
-    );
+    return <div id="book-details">{this.displayBookDetails()}</div>;
   }
 }
 
-export default graphql(getBookQuery)(BookDetails);
+export default graphql(getBookQuery, {
+  options: props => {
+    return {
+      variables: {
+        id: props.bookId
+      }
+    };
+  }
+})(BookDetails);

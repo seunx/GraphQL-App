@@ -1,4 +1,4 @@
-require("dotenv").config;
+require("dotenv").config();
 const PORT = 4000 || process.env.PORT;
 const express = require("express");
 const graphQL = require("express-graphql");
@@ -11,8 +11,7 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 
-const url = `${process.env.URL}`;
-mongoose.connect(url, { useNewUrlParser: true }, () => {
+mongoose.connect(process.env.URL, { useNewUrlParser: true }, () => {
   console.log("Connected to the Database");
 });
 
